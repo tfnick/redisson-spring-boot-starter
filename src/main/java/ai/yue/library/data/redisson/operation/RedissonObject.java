@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 操作对象
  */
+@Deprecated
 public class RedissonObject {
 
     @Resource

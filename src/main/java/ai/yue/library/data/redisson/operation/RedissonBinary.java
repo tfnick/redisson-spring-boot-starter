@@ -9,6 +9,7 @@ import java.io.OutputStream;
 /**
  * 操作对象二进制
  */
+@Deprecated
 public class RedissonBinary {
 
     @Resource

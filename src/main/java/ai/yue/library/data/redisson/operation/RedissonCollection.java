@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 操作集合
  */
+@Deprecated
 public class RedissonCollection {
 
     @Resource
