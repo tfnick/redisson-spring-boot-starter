@@ -2,7 +2,7 @@
 ### 生产者
 
 ```java
-import com.zengtengpeng.annotation.MQPublish;
+import MQPublish;
 import com.zengtengpeng.test.bean.User;
 import org.redisson.api.RTopic;
 import org.redisson.api.RedissonClient;
@@ -53,8 +53,8 @@ public class MQController {
 ```java
 package com.zengtengpeng.test.listener;
 
-import com.zengtengpeng.annotation.MQListener;
-import com.zengtengpeng.enums.MQModel;
+import MQListener;
+import MQModel;
 import com.zengtengpeng.test.bean.User;
 import org.springframework.stereotype.Component;
 
