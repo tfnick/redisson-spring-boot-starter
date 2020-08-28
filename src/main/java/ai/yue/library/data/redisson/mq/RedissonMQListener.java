@@ -88,7 +88,7 @@ public class RedissonMQListener implements BeanPostProcessor, Closeable {
                         public void run() {
                             //消费消息线程
                             while (CONSUMER_ACTIVE.get()) {
-                                Map<StreamMessageId, Map<String, String>> msgHolder = rStream.readGroup(topic, consumerId, 1, READ_TIMEOUT, TimeUnit.MILLISECONDS);
+                                Map<StreamMessageId, Map<String, String>> msgHolder = rStream.readGroup(group, consumerId, 1, READ_TIMEOUT, TimeUnit.MILLISECONDS);
 
                                 if (msgHolder != null && msgHolder.size() > 0) {
                                     for (Map.Entry<StreamMessageId, Map<String, String>> entry : msgHolder.entrySet()) {
