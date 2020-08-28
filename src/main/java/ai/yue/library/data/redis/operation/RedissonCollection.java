@@ -1,6 +1,6 @@
-package ai.yue.library.data.redisson.operation;
+package ai.yue.library.data.redis.operation;
 
-import ai.yue.library.data.redisson.properties.RedissonProperties;
+import ai.yue.library.data.redis.properties.RedissonProperties;
 import org.redisson.api.*;
 
 import javax.annotation.Resource;

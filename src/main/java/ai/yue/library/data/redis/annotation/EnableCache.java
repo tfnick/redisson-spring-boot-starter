@@ -1,6 +1,6 @@
-package ai.yue.library.data.redisson.annotation;
+package ai.yue.library.data.redis.annotation;
 
-import ai.yue.library.data.redisson.configuration.CacheConfiguration;
+import ai.yue.library.data.redis.configuration.CacheConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 

@@ -1,14 +1,13 @@
-package ai.yue.library.data.redisson.properties;
+package ai.yue.library.data.redis.properties;
 
 
-import ai.yue.library.data.redisson.enums.LockModel;
-import ai.yue.library.data.redisson.enums.Model;
+import ai.yue.library.data.redis.enums.LockModel;
+import ai.yue.library.data.redis.enums.Model;
 import org.redisson.config.SslProvider;
 import org.redisson.config.TransportMode;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
-import java.net.URI;
 import java.net.URL;
 
 @ConfigurationProperties(prefix = "yue.redisson")

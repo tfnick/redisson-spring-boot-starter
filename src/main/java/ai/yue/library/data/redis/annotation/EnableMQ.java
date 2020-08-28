@@ -1,6 +1,6 @@
-package ai.yue.library.data.redisson.annotation;
+package ai.yue.library.data.redis.annotation;
 
-import ai.yue.library.data.redisson.configuration.MQConfiguration;
+import ai.yue.library.data.redis.configuration.MQConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 

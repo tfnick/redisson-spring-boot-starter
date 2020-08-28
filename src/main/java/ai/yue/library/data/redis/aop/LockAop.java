@@ -1,9 +1,9 @@
-package ai.yue.library.data.redisson.aop;
+package ai.yue.library.data.redis.aop;
 
-import ai.yue.library.data.redisson.annotation.Lock;
-import ai.yue.library.data.redisson.enums.LockModel;
-import ai.yue.library.data.redisson.excepiton.LockException;
-import ai.yue.library.data.redisson.properties.RedissonProperties;
+import ai.yue.library.data.redis.annotation.Lock;
+import ai.yue.library.data.redis.enums.LockModel;
+import ai.yue.library.data.redis.excepiton.LockException;
+import ai.yue.library.data.redis.properties.RedissonProperties;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

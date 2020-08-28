@@ -1,4 +1,4 @@
-package ai.yue.library.data.redisson.enums;
+package ai.yue.library.data.redis.enums;
 
 public enum Model {
     //哨兵

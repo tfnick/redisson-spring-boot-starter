@@ -1,6 +1,6 @@
-package ai.yue.library.data.redisson.mq;
+package ai.yue.library.data.redis.mq;
 
-import ai.yue.library.data.redisson.annotation.MQListener;
+import ai.yue.library.data.redis.annotation.MQListener;
 import org.redisson.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

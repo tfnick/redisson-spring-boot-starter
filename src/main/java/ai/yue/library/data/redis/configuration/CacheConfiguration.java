@@ -1,7 +1,7 @@
-package ai.yue.library.data.redisson.configuration;
+package ai.yue.library.data.redis.configuration;
 
-import ai.yue.library.data.redisson.annotation.EnableCache;
-import ai.yue.library.data.redisson.properties.RedissonProperties;
+import ai.yue.library.data.redis.annotation.EnableCache;
+import ai.yue.library.data.redis.properties.RedissonProperties;
 import org.redisson.api.RedissonClient;
 import org.redisson.spring.cache.CacheConfig;
 import org.redisson.spring.cache.RedissonSpringCacheManager;

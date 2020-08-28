@@ -1,4 +1,4 @@
-package ai.yue.library.data.redisson.properties;
+package ai.yue.library.data.redis.properties;
 
 import org.redisson.config.ReadMode;
 import org.redisson.config.SubscriptionMode;

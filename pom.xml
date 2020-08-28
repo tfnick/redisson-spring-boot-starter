@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ai.yue.library.data.redisson</groupId>
+    <groupId>ai.yue.library.data.redis</groupId>
     <artifactId>redisson-spring-boot-starter</artifactId>
     <version>1.0.6</version>
     <packaging>jar</packaging>
@@ -45,6 +45,12 @@
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
             <version>3.13.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.73</version>
         </dependency>
     </dependencies>
     <licenses>

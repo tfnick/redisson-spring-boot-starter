@@ -1,4 +1,4 @@
-package ai.yue.library.data.redisson.annotation;
+package ai.yue.library.data.redis.annotation;
 
 import java.lang.annotation.*;
 

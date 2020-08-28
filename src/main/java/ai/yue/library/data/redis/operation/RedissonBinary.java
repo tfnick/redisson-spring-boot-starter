@@ -1,4 +1,4 @@
-package ai.yue.library.data.redisson.operation;
+package ai.yue.library.data.redis.operation;
 
 import org.redisson.api.*;
 

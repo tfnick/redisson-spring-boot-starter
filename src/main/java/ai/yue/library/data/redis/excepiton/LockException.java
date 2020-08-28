@@ -1,4 +1,4 @@
-package ai.yue.library.data.redisson.excepiton;
+package ai.yue.library.data.redis.excepiton;
 
 /**
  * 分布式锁异常

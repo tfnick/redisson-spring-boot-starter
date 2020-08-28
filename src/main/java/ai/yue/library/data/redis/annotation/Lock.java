@@ -1,6 +1,6 @@
-package ai.yue.library.data.redisson.annotation;
+package ai.yue.library.data.redis.annotation;
 
-import ai.yue.library.data.redisson.enums.LockModel;
+import ai.yue.library.data.redis.enums.LockModel;
 
 import java.lang.annotation.*;
 

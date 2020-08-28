@@ -1,12 +1,12 @@
-package ai.yue.library.data.redisson.configuration;
+package ai.yue.library.data.redis.configuration;
 
-import ai.yue.library.data.redisson.aop.LockAop;
-import ai.yue.library.data.redisson.aop.MQAop;
-import ai.yue.library.data.redisson.operation.RedissonBinary;
-import ai.yue.library.data.redisson.operation.RedissonCollection;
-import ai.yue.library.data.redisson.operation.RedissonObject;
-import ai.yue.library.data.redisson.properties.MultipleServerConfig;
-import ai.yue.library.data.redisson.properties.RedissonProperties;
+import ai.yue.library.data.redis.aop.LockAop;
+import ai.yue.library.data.redis.aop.MQAop;
+import ai.yue.library.data.redis.operation.RedissonBinary;
+import ai.yue.library.data.redis.operation.RedissonCollection;
+import ai.yue.library.data.redis.operation.RedissonObject;
+import ai.yue.library.data.redis.properties.MultipleServerConfig;
+import ai.yue.library.data.redis.properties.RedissonProperties;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.client.codec.Codec;
@@ -86,7 +86,7 @@ public class RedissonConfiguration {
         switch (redissonProperties.getModel()){
             case SINGLE:
                 SingleServerConfig singleServerConfig = config.useSingleServer();
-                ai.yue.library.data.redisson.properties.SingleServerConfig param = redissonProperties.getSingleServerConfig();
+                ai.yue.library.data.redis.properties.SingleServerConfig param = redissonProperties.getSingleServerConfig();
                 singleServerConfig.setAddress(prefixAddress(param.getAddress()));
                 singleServerConfig.setConnectionMinimumIdleSize(param.getConnectionMinimumIdleSize());
                 singleServerConfig.setConnectionPoolSize(param.getConnectionPoolSize());

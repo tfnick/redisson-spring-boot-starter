@@ -1,6 +1,6 @@
-package ai.yue.library.data.redisson.configuration;
+package ai.yue.library.data.redis.configuration;
 
-import ai.yue.library.data.redisson.mq.RedissonMQListener;
+import ai.yue.library.data.redis.mq.RedissonMQListener;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

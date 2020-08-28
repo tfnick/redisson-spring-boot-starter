@@ -1,7 +1,5 @@
-package ai.yue.library.data.redisson.properties;
+package ai.yue.library.data.redis.properties;
 
-
-import org.springframework.util.StringUtils;
 
 /**
  * 单节点配置
