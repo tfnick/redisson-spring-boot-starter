@@ -11,7 +11,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import java.net.URI;
 import java.net.URL;
 
-@ConfigurationProperties(prefix = "redisson")
+@ConfigurationProperties(prefix = "yue.redisson")
 public class RedissonProperties {
 
     private Model model=Model.SINGLE;
