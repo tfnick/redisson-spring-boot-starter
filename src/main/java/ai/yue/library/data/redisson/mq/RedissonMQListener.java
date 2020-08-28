@@ -12,7 +12,8 @@ import org.springframework.util.ReflectionUtils;
 
 import java.io.Closeable;
 import java.io.IOException;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -34,6 +35,10 @@ public class RedissonMQListener implements BeanPostProcessor, Closeable {
 
     private AtomicBoolean CONSUMER_ACTIVE = new AtomicBoolean(true);
 
+    /*private List<String> list= Collections.synchronizedList(new ArrayList<>());*/
+    private Set<String> GROUP_TOPIC_HOLDER = Collections.synchronizedSet(new HashSet<>());
+    private Map<String, String> GROUP_TOPIC_MAP = new ConcurrentHashMap<>();
+
     private final int READ_TIMEOUT = 1000;
 
     @Override
@@ -48,10 +53,32 @@ public class RedissonMQListener implements BeanPostProcessor, Closeable {
                 }
 
                 String topic = annotation.name();
+                String group = annotation.group();
                 int concurrent = annotation.concurrent();
                 concurrent = concurrent <= 1 ? 1 : concurrent;
+
                 RStream<String,String> rStream = redissonClient.getStream(topic);
-                log.info("构建消费者name={}",annotation.name());
+
+                String combine = group + "." + topic;
+                if (!GROUP_TOPIC_HOLDER.contains(combine)) {
+                    //初始化消费者组
+                    log.info("初始化Topic{}消费者组{}", topic, group);
+                    rStream.add("0", "0");
+                    List<StreamGroup> existsGroups = rStream.listGroups();
+                    boolean exists = false;
+                    if (existsGroups != null) {
+                        for (StreamGroup g : existsGroups) {
+                            if (g.getName().equals(group)) {
+                                exists = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!exists) {
+                        rStream.createGroup(group);
+                        GROUP_TOPIC_HOLDER.add(combine);
+                    }
+                }
 
                 for (int threadId = 0; threadId < concurrent; threadId++) {
                     final String consumerId = topic + "_consumer" + threadId;

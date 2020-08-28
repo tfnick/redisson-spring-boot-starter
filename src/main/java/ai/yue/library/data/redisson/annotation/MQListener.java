@@ -21,6 +21,12 @@ public @interface MQListener {
 //    MQModel model() default MQModel.PRECISE;
 
     /**
+     * 消费者组
+     * @return
+     */
+    String group();
+
+    /**
      * 单节点并发的consumer数，默认为1
      * @return
      */

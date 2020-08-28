@@ -6,7 +6,7 @@
 
     <groupId>ai.yue.library.data.redisson</groupId>
     <artifactId>redisson-spring-boot-starter</artifactId>
-    <version>1.0.5-SNAPSHOT</version>
+    <version>1.0.6-SNAPSHOT</version>
     <packaging>jar</packaging>
     <description>redisson-spring-boot-starter</description>
     <parent>
