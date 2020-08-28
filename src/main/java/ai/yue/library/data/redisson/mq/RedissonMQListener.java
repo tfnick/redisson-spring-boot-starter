@@ -41,6 +41,8 @@ public class RedissonMQListener implements BeanPostProcessor, Closeable {
 
     private final int READ_TIMEOUT = 1000;
 
+    private final String INIT_MSG_KEY_VALUE = "_0_";
+
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 
@@ -63,7 +65,7 @@ public class RedissonMQListener implements BeanPostProcessor, Closeable {
                 if (!GROUP_TOPIC_HOLDER.contains(combine)) {
                     //初始化消费者组
                     log.info("初始化Topic{}消费者组{}", topic, group);
-                    rStream.add("0", "0");
+                    rStream.add(INIT_MSG_KEY_VALUE, INIT_MSG_KEY_VALUE);
                     List<StreamGroup> existsGroups = rStream.listGroups();
                     boolean exists = false;
                     if (existsGroups != null) {
@@ -98,19 +100,21 @@ public class RedissonMQListener implements BeanPostProcessor, Closeable {
                                         //执行消息处理
                                         boolean success = true;
                                         try {
+                                            String key = msg.keySet().iterator().next();
+                                            String val = msg.values().iterator().next();
                                             Object[] args=new Object[method.getParameterTypes().length];
                                             if (args.length == 2) {
                                                 Class parameterTypeKey = method.getParameterTypes()[0];
                                                 Class parameterTypeVal = method.getParameterTypes()[1];
 
-                                                if (parameterTypeKey.getSimpleName().equals("String") && parameterTypeKey.getSimpleName().equals("Object")) {
-                                                    args[0]=msg.keySet().iterator().next();
+                                                if (parameterTypeKey.getSimpleName().equals("String") || parameterTypeKey.getSimpleName().equals("Object")) {
+                                                    args[0]=key;
                                                 }else{
                                                     args[0]=null;
                                                 }
 
-                                                if (parameterTypeVal.getSimpleName().equals("String") && parameterTypeVal.getSimpleName().equals("Object")) {
-                                                    args[1]=msg.values().iterator().next();
+                                                if (parameterTypeVal.getSimpleName().equals("String") || parameterTypeVal.getSimpleName().equals("Object")) {
+                                                    args[1]=val;
                                                 }else{
                                                     args[1]=null;
                                                 }
@@ -121,8 +125,9 @@ public class RedissonMQListener implements BeanPostProcessor, Closeable {
                                                     args[index++]=null;
                                                 }
                                             }
-
-                                            method.invoke(bean,args);
+                                            if (!INIT_MSG_KEY_VALUE.equals(key)) {
+                                                method.invoke(bean,args);
+                                            }
                                         } catch (Exception e) {
                                             success = false;
                                             throw new RuntimeException(e);
@@ -173,5 +178,6 @@ public class RedissonMQListener implements BeanPostProcessor, Closeable {
         if (consumerExecutor != null) {
             consumerExecutor.shutdown();
         }
+        GROUP_TOPIC_MAP.clear();
     }
 }
