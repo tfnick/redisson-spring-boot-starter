@@ -92,22 +92,37 @@ public class RedissonMQListener implements BeanPostProcessor, Closeable {
 
                                 if (msgHolder != null && msgHolder.size() > 0) {
                                     for (Map.Entry<StreamMessageId, Map<String, String>> entry : msgHolder.entrySet()) {
+                                        //StreamMessageId streamMessageId = entry.getKey();
                                         Map<String, String> msg = entry.getValue();
                                         log.info("线程ID {},线程任务名 {},消费者ID {},消息ID {},消息体 {}", Thread.currentThread().getId(), Thread.currentThread().getName(), consumerId, entry.getKey(), msg);
                                         //执行消息处理
                                         boolean success = true;
                                         try {
-                                            Object[] aras=new Object[method.getParameterTypes().length];
-                                            int index=0;
-                                            for (Class parameterType : method.getParameterTypes()) {
-                                                String simpleName = parameterType.getSimpleName();
-                                                if (msg.getClass().getSimpleName().equals(simpleName)||"Object".equals(simpleName)){
-                                                    aras[index++]=msg;
-                                                }else {
-                                                    aras[index++]=null;
+                                            Object[] args=new Object[method.getParameterTypes().length];
+                                            if (args.length == 2) {
+                                                Class parameterTypeKey = method.getParameterTypes()[0];
+                                                Class parameterTypeVal = method.getParameterTypes()[1];
+
+                                                if (parameterTypeKey.getSimpleName().equals("String") && parameterTypeKey.getSimpleName().equals("Object")) {
+                                                    args[0]=msg.keySet().iterator().next();
+                                                }else{
+                                                    args[0]=null;
+                                                }
+
+                                                if (parameterTypeVal.getSimpleName().equals("String") && parameterTypeVal.getSimpleName().equals("Object")) {
+                                                    args[1]=msg.values().iterator().next();
+                                                }else{
+                                                    args[1]=null;
+                                                }
+                                            }else{
+                                                //无法设置msg参数
+                                                int index=0;
+                                                for (Class parameterType : method.getParameterTypes()) {
+                                                    args[index++]=null;
                                                 }
                                             }
-                                            method.invoke(bean,aras);
+
+                                            method.invoke(bean,args);
                                         } catch (Exception e) {
                                             success = false;
                                             throw new RuntimeException(e);
